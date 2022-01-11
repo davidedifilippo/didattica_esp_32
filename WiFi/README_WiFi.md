@@ -22,21 +22,21 @@ dobbiamo impostare il modulo in modalità STATION o stazione (l'altra modalità 
 
 Il metodo scanNetworks() applicato all'oggetto WiFi restituisce il numero di reti raggiungibili dal modulo in quel momento:
 
-int n = WiFi.scanNetworks();
+      int n = WiFi.scanNetworks();
 
 dove n è il numero di reti WiFi locali trovate. Possiamo determinare l'identificativo di rete univoco SSID 
 (Service Set Identifier) i-esimo tra gli n possibili tramite:
 
-WiFi.SSID(i);
+      WiFi.SSID(i);
 
 Il livello di potenza RSSI (Received Signal Strenght Indicator) del segnale ricevuto dalla i-esima stazione in decibel 
 per milliWatt può essere ricavato tramite la chiamata:
 
-WiFi.RSSI(i);
+      WiFi.RSSI(i);
 
 Il tipo di algoritmo di criptazione utilizzato per la sicurezza delle informazioni scambiate può essere ricavato tramite:
 
-WiFi.encryptionType(i);
+      WiFi.encryptionType(i);
 
 Se le informazioni dovessero viaggiare in chiaro la chiamata resituisce il valore enumerativo WIFI_AUTH_OPEN.
 
