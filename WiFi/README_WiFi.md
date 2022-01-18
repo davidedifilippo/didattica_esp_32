@@ -1,6 +1,6 @@
 # WiFi Scan
 
-Il programma consente la scasione della rete Wifi 802.11 b/g/n alla ricerca di punti di accesso LAN. Per visualizzare i risultati
+Il programma consente la scansione della rete Wifi 802.11 b/g/n alla ricerca di punti di accesso LAN. Per visualizzare i risultati
 della scansione viene utilizzato per semplicità il monitor seriale. 
 
 ## Attivazione modulo WiFi
