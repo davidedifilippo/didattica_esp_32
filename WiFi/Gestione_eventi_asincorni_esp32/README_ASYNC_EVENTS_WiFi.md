@@ -50,7 +50,7 @@ Quando l'esp32 ha ottenuto l'indirizzo IP dal router richiamo l'evento di gestio
 
             void IP_WiFi_Assegnato(WiFiEvent_t event, WiFiEventInfo_t info){ 
             Serial.print("WiFi connesso a ");
-            Serial.print("WIFI_SSID");
+            Serial.println(WIFI_SSID);
             Serial.print("Indirizzo IP esp32: "); 
             Serial.println(WiFi.localIP()); 
       } 
