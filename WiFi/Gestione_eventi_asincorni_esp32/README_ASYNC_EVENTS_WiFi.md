@@ -14,7 +14,7 @@ Da questo momento possiamo lavorare sul modulo WiFi del chip tramite la classe W
 
 Ovviamente si attiva il modulo di comunicazione seriale per eseguire il debug dell'applicazione. 
 
-Serial.begin(115200);
+            Serial.begin(115200);
 
 In questo caso si imposta la velocità di comunicazione ad un valore più elevato, dato che il processore tensilica è a 32bit e la frequenza di clock è elevata (80MHz)
 
@@ -27,7 +27,7 @@ Si registrano i seguenti eventi asincroni, da gestire nel momento in cui si veri
             WiFi.onEvent(StazioneWiFiDisconnessa, SYSTEM_EVENT_STA_DISCONNECTED);
             /*fine*/
 
-Bisogna poi richimare la funzione che si occupa della connessione al router dell'es32:
+Bisogna poi richiamare la funzione che si occupa della connessione del modulo esp32 al router locale:
 
              void connetti_Alla_Rete_Wifi() {
                   Serial.println("Tentativo di connessione all’access point WiFi... "); 
