@@ -1,6 +1,6 @@
 # WiFi Async Events
 
-Esiste la possibilità di registrare delle funzioni da eseguire quando si verifichino determinati eventi nella connessione WiFi. A
+Esiste la possibilità di registrare delle funzioni da eseguire quando si verifichino determinati eventi nella connessione WiFi. 
 
 ## Attivazione modulo WiFi
 
