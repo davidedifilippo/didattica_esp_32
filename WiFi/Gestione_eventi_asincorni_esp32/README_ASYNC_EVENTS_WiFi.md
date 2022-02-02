@@ -6,7 +6,7 @@ Esiste la possibilità di registrare delle funzioni da eseguire quando si verifi
 
 La prima cosa da fare è includere la libreria di gestione del modulo WiFi del Chip ESP32
 
-      #include "WiFi.h"
+      #include <WiFi.h>
 
 Da questo momento possiamo lavorare sul modulo WiFi del chip tramite la classe WiFi. 
 
