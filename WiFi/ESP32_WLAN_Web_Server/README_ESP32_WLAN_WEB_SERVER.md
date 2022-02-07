@@ -7,7 +7,7 @@ Esiste la possibilità di impostare il modulo come un server WEB HTTP in ascolto
 
 La prima cosa da fare è includere la libreria di gestione del modulo WiFi del Chip ESP32
 
-      #include "WiFi.h"
+      #include <WiFi.h>
 
 Da questo momento possiamo lavorare sul modulo WiFi del chip tramite la classe WiFi. 
 
