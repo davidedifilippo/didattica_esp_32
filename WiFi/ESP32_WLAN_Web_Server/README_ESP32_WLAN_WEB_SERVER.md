@@ -52,11 +52,11 @@ Qualsiasi dispositivo WIFI con un browser WEB (PC/Tablet/Cellullare con Chrome o
 Si collegano due led di colore diverso, uno sul GPIO 26 ed uno sul GPIO 27:
 
 
-uint8_t LED1pin = 26;
-bool LED1status = LOW;
+        uint8_t LED1pin = 26;
+        bool LED1status = LOW;
 
-uint8_t LED2pin = 27;
-bool B_LED2status = LOW;
+        uint8_t LED2pin = 27;
+        bool B_LED2status = LOW;
 
 
 ## Setup
@@ -77,13 +77,13 @@ Si registrano le funzioni da richiamare per ogni evento di interesse che il serv
       server.on("/led1off", handle_led1off);
       server.on("/led2on", handle_led2on);
       server.on("/led2off", handle_led2off);
-       server.onNotFound(handle_NotFound);
+      server.onNotFound(handle_NotFound);
 
 Si attiva l'access point:
 
        WiFi.softAP(SSID, PASSWORD);
        WiFi.softAPConfig(local_ip, gateway, subnet);
-      delay(100);
+       delay(100);
 
 Si attiva il server:
 
