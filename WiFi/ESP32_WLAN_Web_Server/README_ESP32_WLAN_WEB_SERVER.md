@@ -7,7 +7,7 @@ Esiste la possibilità di impostare il modulo come un server WEB HTTP in ascolto
 
 La prima cosa da fare è includere la libreria di gestione del modulo WiFi del Chip ESP32
 
-      #include "WiFi.h"
+      #include <WiFi.h>
 
 Da questo momento possiamo lavorare sul modulo WiFi del chip tramite la classe WiFi. 
 
@@ -23,7 +23,7 @@ Da questo momento abbiamo a disposizione la classe WebServer.
 
 Si instanzia un servizio di tipo WebServer in ascolto sulla porta 80:  
 
-WebServer server(80);
+    WebServer server(80);
 
 Il server per il momento tuttavia è inattivo. 
 
@@ -52,11 +52,11 @@ Qualsiasi dispositivo WIFI con un browser WEB (PC/Tablet/Cellullare con Chrome o
 Si collegano due led di colore diverso, uno sul GPIO 26 ed uno sul GPIO 27:
 
 
-uint8_t LED1pin = 26;
-bool LED1status = LOW;
+        uint8_t LED1pin = 26;
+        bool LED1status = LOW;
 
-uint8_t LED2pin = 27;
-bool B_LED2status = LOW;
+        uint8_t LED2pin = 27;
+        bool B_LED2status = LOW;
 
 
 ## Setup
@@ -72,18 +72,18 @@ Si impostano i piedini GPIO26 e GPIO27 del microcontrollore come output:
 
 Si registrano le funzioni da richiamare per ogni evento di interesse che il server registra nell'interazione con il client:  
 
-  server.on("/", handle_OnConnect);
-  server.on("/led1on", handle_led1on);
-  server.on("/led1off", handle_led1off);
-  server.on("/led2on", handle_led2on);
-  server.on("/led2off", handle_led2off);
-  server.onNotFound(handle_NotFound);
+      server.on("/", handle_OnConnect);
+      server.on("/led1on", handle_led1on);
+      server.on("/led1off", handle_led1off);
+      server.on("/led2on", handle_led2on);
+      server.on("/led2off", handle_led2off);
+      server.onNotFound(handle_NotFound);
 
 Si attiva l'access point:
 
-  WiFi.softAP(SSID, PASSWORD);
-  WiFi.softAPConfig(local_ip, gateway, subnet);
-  delay(100);
+       WiFi.softAP(SSID, PASSWORD);
+       WiFi.softAPConfig(local_ip, gateway, subnet);
+       delay(100);
 
 Si attiva il server:
 
