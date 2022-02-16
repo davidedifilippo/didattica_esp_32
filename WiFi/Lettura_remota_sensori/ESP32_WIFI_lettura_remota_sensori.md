@@ -47,7 +47,7 @@ Si imposta il gateway di riferimento:
 Qualsiasi dispositivo WIFI con un browser WEB (PC/Tablet/Cellullare con Chrome o affini) o dispositivo con software client HTTP può collegarsi al server HTTP dell'esp32. Ricevuta la pagina HTML sarà possibile interagire con il modulo esp32
 
 
-### Numero e stato dei led
+### Rilevazione remota della temperatura
 
 Si dichiara la variabile che conterrà il dato di temperatura aggiornato 
 
