@@ -1,0 +1,18 @@
+
+
+## ESP32 e Modulo I2C  
+
+![This is an image](./resources/esp32_pinout.png)
+
+Il modulo I2C dell' ESP32 può essere collegato al BUS tramite due piedini digitali di default: 
+
+      SDA (GPIO 21)
+      SCL (GPIO 22)
+      
+come si vede dal pinout in figura.
+
+## Collegamento del Modulo I2C  
+
+Il modulo I2C deve essere collegato al bus I2C dell'esp32 come mostrato inm figura:
+
+![This is an image](./resources/esp32_tmp102_I2C.png)
