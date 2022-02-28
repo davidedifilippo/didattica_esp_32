@@ -13,9 +13,9 @@ come si vede dal pinout in figura.
 
 ## Collegamento del Modulo I2C  
 
-Il modulo I2C deve essere collegato al bus I2C dell'esp32 come mostrato inm figura:
+Il modulo I2C deve essere collegato al bus I2C dell'esp32 come mostrato in figura:
 
-![This is an image](./resources/esp32_tmp102_I2C.png)
+![This is an image](./resources/esp32_tmp102_I2C.jpg)
 
 
 ## Inclusione librerie
