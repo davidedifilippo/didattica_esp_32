@@ -51,7 +51,7 @@ Qualsiasi dispositivo WIFI con un browser WEB (PC/Tablet/Cellullare con Chrome o
 
 Si dichiara la variabile che conterrà il dato di temperatura aggiornato 
 
-      float Temperature;
+      float millivolt;
 
 
 ## ADC converter
@@ -85,7 +85,7 @@ L'ADC numero 2 non può essere utilizzato quando è attivo il modulo WiFi ossia 
 Utilizzare il canale 6 (pin GPIO 34) dell'ADC1 ponendo all'inizio del programma:
 
 
-      const int ADC1_CH6(34);
+      const int ADC1_CH6 = 34;
 
 
 ## Simulazione del sensore tramite potenziometro 
@@ -98,7 +98,7 @@ Inizialmente si simula il sensore tramite un potenziometro collegato tra GND e 3
 
 Si attiva la porta seriale di comunicazione per il debug dell'applicazione:
 
-      Serial.begin(115200);
+      Serial.begin(9600);
 
 
 Si registrano le funzioni da richiamare per ogni evento di interesse che il server deve gestire nell'interazione con il client:  
@@ -134,8 +134,8 @@ Ad ogni evento che modifica lo stato delle cose aggiorno la pagina HTML e la inv
     
       void handle_OnConnect() {
 
-      Temperature = analogRead(ADC1_CH6); // Gets the values of the temperature
-  
+      int num = analogRead(ADC1_CH6); // Gets the ddp values on pin 34
+      millivolt = (num/4095.0)*3300;
       server.send(200, "text/html", SendHTML(Temperature)); 
       }
 
@@ -152,7 +152,7 @@ Qualsiasi altra richiesta che non sia quella della pagina index restiutisce un m
 ## Aggiornamento della pagina HTML e invio al client 
 
 
-      String SendHTML(float Temperaturestat){
+      String SendHTML(float millivolt){
       String ptr = "<!DOCTYPE html> <html>\n";
       ptr +="<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
       ptr +="<title>ESP32 Sensor Report</title>\n";
@@ -164,8 +164,8 @@ Qualsiasi altra richiesta che non sia quella della pagina index restiutisce un m
       ptr +="<body>\n";
       ptr +="<div id=\"webpage\">\n";
       ptr +="<h1>ESP32 temperature sensor data</h1>\n";
-      ptr +="<p>Temperature: ";
-      ptr +=String(Temperaturestat);
+      ptr +="<p>Tensione: ";
+      ptr +=String(millivolt);
       ptr +="&deg;C</p>";  
       ptr +="</div>\n";
       ptr +="</body>\n";
