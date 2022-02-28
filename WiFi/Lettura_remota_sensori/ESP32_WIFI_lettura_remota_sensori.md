@@ -82,7 +82,7 @@ L'ADC numero 2 non può essere utilizzato quando è attivo il modulo WiFi ossia 
       ADC2_CH8 (GPIO 25)
       ADC2_CH9 (GPIO 26)
 
-Utilizzare il piedino il canale 6 dell'ADC1 ponendo all'inizio del programma:
+Utilizzare il canale 6 (pin GPIO 34) dell'ADC1 ponendo all'inizio del programma:
 
 
       const int ADC1_CH6(34);
@@ -132,7 +132,7 @@ Ciclicamente si controlla se ci sono nuovi client connessi:
 
 Ad ogni evento che modifica lo stato delle cose aggiorno la pagina HTML e la invio al client:
     
-void handle_OnConnect() {
+      void handle_OnConnect() {
 
       Temperature = analogRead(ADC1_CH6); // Gets the values of the temperature
   
