@@ -163,7 +163,7 @@ Qualsiasi altra richiesta che non sia quella della pagina index restiutisce un m
       ptr +="</head>\n";
       ptr +="<body>\n";
       ptr +="<div id=\"webpage\">\n";
-      ptr +="<h1>ESP32 temperature sensor data</h1>\n";
+      ptr +="<h1>ESP32 voltage misure on pin 34</h1>\n";
       ptr +="<p>Tensione: ";
       ptr +=String(millivolt);
       ptr +="&deg;C</p>";  
