@@ -13,19 +13,45 @@ Da questo momento possiamo lavorare sul modulo WiFi del chip tramite la classe W
 
 ## Setup
 
-Per poterci associare ad una rete locale 
-dobbiamo impostare il modulo in modalità STATION o stazione (l'altra modalità possibile è AP o access point). Nel setup:
+Imopstiamo il modulo di comunicazione seriale dell'esp32 per il debug del firmware:
+
+      Serial.begin(9600);
+
+Per poterci associare ad una rete locale dobbiamo impostare il modulo in modalità STATION o stazione (l'altra modalità possibile è AP o access point). 
+
 
       WiFi.mode(WIFI_STA);
+      
+Disconnettiamo il dispositivo da qualsiasi punto di accesso precedentemente acquisito:    
+
+ 
+      WiFi.disconnect();
+      delay(100);
+
+Il setup dell'esp32 è terminato: 
+  
+      Serial.println("Setup terminato");
 
 ## Loop
 
-Il metodo scanNetworks() applicato all'oggetto WiFi restituisce il numero di reti raggiungibili dal modulo in quel momento:
+Il metodo scanNetworks() applicato all'oggetto WiFi restituisce il numero di reti WiFi locali raggiungibili dal modulo in quel momento:
 
       int n = WiFi.scanNetworks();
 
-dove n è il numero di reti WiFi locali trovate. Possiamo determinare l'identificativo di rete univoco SSID 
-(Service Set Identifier) i-esimo tra gli n possibili tramite:
+dove n è il numero di reti WiFi locali trovate. Comunichiamo che la scansione è terminata: 
+
+      Serial.println("Scansione terminata...");
+
+Stampiamo il numero di access point rilevati. Se n == 0:
+
+      Serial.println("Nessun access point disponibile"); 
+  
+ altrimenti:
+ 
+    Serial.print(n);
+    Serial.println(" reti trovate");
+  
+Possiamo determinare l'identificativo di rete univoco SSID  (Service Set Identifier) i-esimo tra gli n possibili tramite:
 
       WiFi.SSID(i);
 
@@ -40,5 +66,19 @@ Il tipo di algoritmo di criptazione utilizzato per la sicurezza delle informazio
 
 Se le informazioni dovessero viaggiare in chiaro la chiamata resituisce il valore enumerativo WIFI_AUTH_OPEN.
 
-
+       for (int i = 0; i < n; ++i) { // Print SSID and RSSI for each network found
+                                          
+            Serial.print(i + 1);
+            Serial.print(": ");
+            Serial.print(WiFi.SSID(i));
+            Serial.print(" (");
+            Serial.print(WiFi.RSSI(i));
+            Serial.print(")");
+            Serial.println((WiFi.encryptionType(i) == WIFI_AUTH_OPEN)?" ":"*");
+            delay(10);
+            }
+    
+ Aspettiamo 5 secondi prima di una nuova scansione:
+ 
+            delay(5000)
 
