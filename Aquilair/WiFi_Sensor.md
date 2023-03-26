@@ -125,7 +125,7 @@ Si attiva il sensore, si legge la temperatura, si mette il sensore in modalità 
 
 
      temp_sensor_tmp102.wakeup();
-     temp = temp_sensor_tmp102.readTempC();                            //Record temperature
+     temp = temp_sensor_tmp102.readTempC();                          
      temp_sensor_tmp102.sleep();                            
   
 
@@ -152,7 +152,7 @@ Si invia la misura con i tag al sever:
      
 Si stampa la misura sulla seriale:
   
-      Serial.print("Temp: ");                                            //
+      Serial.print("Temp: ");                                            
       Serial.println(temp);
       
 Si aspetta per non consumare batteria:
