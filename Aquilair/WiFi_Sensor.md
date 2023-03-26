@@ -65,9 +65,13 @@ Creo un data point da poter inviare al server contenente un tag riconoscibile in
     Point sensor("weather");   //Data point
  
  ## Fase di setup
+ 
+ Si inizializza l'interfaccia seriale e l'interfaccia I2C del micro controllore:
 
       Serial.begin(9600);    
-      Wire.begin();                                       
+      Wire.begin();     
+      
+Si interroga il sensore per vedere se risponde:
 
       if(!temp_sensor_tmp102.begin())
       {
@@ -76,9 +80,12 @@ Creo un data point da poter inviare al server contenente un tag riconoscibile in
         while(1); 
        }
  
+ Si imposta il microcontrollore come stazione che si connette ad uno specifico access point:
 
        WiFi.mode(WIFI_STA);                                              //Setup wifi connection
        wifiMulti.addAP(WIFI_SSID, WIFI_PASSWORD);
+
+Si connette il dispositivo all'AP:
 
       Serial.print("Connecting to wifi");                               //Connect to WiFi
       while (wifiMulti.run() != WL_CONNECTED) 
@@ -89,10 +96,16 @@ Creo un data point da poter inviare al server contenente un tag riconoscibile in
   
     Serial.println();
 
+Si aggiungono dei TAG per individuare dispositivo trasmittente, Access Point, 
+
     sensor.addTag("device", DEVICE);                                   //Add tag(s) - repeat as required
     sensor.addTag("SSID", WIFI_SSID);
 
+Nessario solo per connessioni sicure TLS:
+
     timeSync(TZ_INFO, "pool.ntp.org", "time.nis.gov");                 //Accurate time is necessary for certificate validation and writing in batches
+
+Ci si connette con il database InfluxDB scelto:
 
     if (client.validateConnection())                                   //Check server connection
     {
@@ -105,30 +118,43 @@ Creo un data point da poter inviare al server contenente un tag riconoscibile in
       Serial.println(client.getLastErrorMessage());
     }
 
+
 ## Fase di Loop
 
+Si attiva il sensore, si legge la temperatura, si mette il sensore in modalità a basso consumo per un uso a batteria:
 
-      temp_sensor_tmp102.wakeup();
-      temp = temp_sensor_tmp102.readTempC();                            //Record temperature
+
+     temp_sensor_tmp102.wakeup();
+     temp = temp_sensor_tmp102.readTempC();                            //Record temperature
      temp_sensor_tmp102.sleep();                            
   
 
-      sensor.clearFields();                                              //Clear fields for reusing the point. Tags will remain untouched
+Si cancella la misura precedente:
 
-     sensor.addField("temperature", temp);                              // Store measured value into point
+     sensor.clearFields();                                            
+
+Si aggiunge una nuova misura:
+
+     sensor.addField("temperature", temp);                              
  
-
+Si controlla se si è ancora connessi all'AP:
     
-     if (wifiMulti.run() != WL_CONNECTED)                               //Check WiFi connection and reconnect if needed
+     if (wifiMulti.run() != WL_CONNECTED)                               
         Serial.println("Wifi connection lost");
+        
+Si invia la misura con i tag al sever:
 
-     if (!client.writePoint(sensor))                                    //Write data point
+     if (!client.writePoint(sensor))                                    
      {
         Serial.print("InfluxDB write failed: ");
         Serial.println(client.getLastErrorMessage());
      }
+     
+Si stampa la misura sulla seriale:
   
-      Serial.print("Temp: ");                                            //Display readings on serial monitor
-       Serial.println(temp);
-  
+      Serial.print("Temp: ");                                            //
+      Serial.println(temp);
+      
+Si aspetta per non consumare batteria:
+
      delay(10000); 
